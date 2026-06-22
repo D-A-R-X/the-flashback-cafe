@@ -9,14 +9,6 @@ const NAV_ITEMS = [
   { href: "#visit", label: "04 · Visit" },
 ];
 
-const SONGS = [
-  "PLAYING — Pancham, '74",
-  "PLAYING — Ilaiyaraaja, '83",
-  "PLAYING — Lata, '71",
-  "PLAYING — A.R. Rahman, '95",
-  "PLAYING — Coltrane, '63",
-];
-
 /* the real menu, in the cafe's own tanglish voice */
 const CATEGORIES = [
   {
@@ -294,7 +286,7 @@ function Preloader({ visible }) {
         <p className="pre__tag">Taste of the past, one cup at a time.</p>
         <p className="pre__count mono">
           <span>EST.</span>
-          <em>2018</em>
+          <em>Sept &apos;23</em>
           <span>·</span>
           <em>Ashok Nagar, Chennai</em>
         </p>
@@ -307,7 +299,6 @@ export default function Page() {
   const fillRef = useRef(null);
   const sprocketsRef = useRef(null);
   const heroPolyRef = useRef(null);
-  const playingRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -369,26 +360,6 @@ export default function Page() {
       io.observe(el);
     });
     return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!playingRef.current) return;
-    let idx = 0;
-    const interval = setInterval(() => {
-      idx = (idx + 1) % SONGS.length;
-      const next = SONGS[idx];
-      let i = 0;
-      if (playingRef.current) playingRef.current.textContent = "";
-      const t = setInterval(() => {
-        if (!playingRef.current) {
-          clearInterval(t);
-          return;
-        }
-        playingRef.current.textContent = next.slice(0, ++i);
-        if (i >= next.length) clearInterval(t);
-      }, 28);
-    }, 5200);
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -477,22 +448,21 @@ export default function Page() {
       <section className="hero" id="top">
         <div className="hero__meta hero__meta--tl">
           <span className="tape">REEL — 042</span>
-          <p>
-            N 13°02&apos;02&quot; · E 80°12&apos;37&quot;
-            <br />
-            Ashok Nagar, Chennai
-          </p>
+          <p>Ashok Nagar, Chennai</p>
         </div>
         <div className="hero__meta hero__meta--tr">
-          <p>EST. <strong>2018</strong> · ROAST №7</p>
-          <p ref={playingRef}>PLAYING — Ilaiyaraaja, &apos;83</p>
+          <p>EST. <strong>18·09·2023</strong> · ROAST №7</p>
         </div>
 
-        <h1 className="hero__title">
-          <span className="word"><em>the</em></span>
-          <span className="word word--big">Flash<i>·</i></span>
-          <span className="word word--big">Back</span>
-          <span className="word word--sub">Café — Taste of the Past</span>
+        <h1 className="hero__logo">
+          <span className="hero__logo-float">
+            <img
+              src="/flashback-logo.png"
+              alt="The FlashBack Café — Taste of the Past"
+              className="hero__logo-img"
+            />
+          </span>
+          <span className="hero__logo-sub">Café &mdash; Taste of the Past</span>
         </h1>
 
         <div className="hero__polaroid" ref={heroPolyRef}>
@@ -561,7 +531,7 @@ export default function Page() {
         <div className="story__grid">
           <div className="story__copy" data-reveal>
             <h2>
-              We opened on a Tuesday
+              We opened on a Monday
               <br />
               with a borrowed espresso machine
               <br />
@@ -582,7 +552,7 @@ export default function Page() {
             <ul className="story__stats">
               <li><strong>17,402</strong><span>cups poured / year</span></li>
               <li><strong>308</strong><span>records in the crate</span></li>
-              <li><strong>6 yrs</strong><span>and counting</span></li>
+              <li><strong>Sept &apos;23</strong><span>and counting</span></li>
             </ul>
           </div>
 
@@ -658,7 +628,7 @@ export default function Page() {
         <header className="menu__head">
           <p className="kicker" data-reveal>Chapter 02 — from the vault</p>
           <h2 data-reveal>
-            The menu, <em>sollu machi</em>.
+            The menu, <em>course by course</em>.
           </h2>
           <p className="menu__note" data-reveal>
             Roasted in-house every Monday. Plated by someone who used to be a
@@ -879,11 +849,6 @@ export default function Page() {
                 <span className="visit__sub">near RBL Bank · Sarvamangala Colony</span><br />
                 Ashok Nagar, Chennai &mdash; 600083
               </address>
-              <p className="card__rule" aria-hidden="true">·   ·   ·</p>
-              <div className="visit__coords">
-                <p>LAT <strong>13.033900</strong></p>
-                <p>LON <strong>80.210300</strong></p>
-              </div>
             </div>
 
             <a className="btn" href="https://maps.app.goo.gl/rey41Te4S22HGDkA6" target="_blank" rel="noopener noreferrer">

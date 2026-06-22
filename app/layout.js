@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${fraunces.variable} ${newsreader.variable} ${jetbrainsMono.variable} ${anton.variable}`}
     >
       <body>{children}</body>
